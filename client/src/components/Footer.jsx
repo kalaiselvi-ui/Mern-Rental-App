@@ -1,8 +1,8 @@
 
 import { Email, LocalPhone } from "@mui/icons-material";
+import "../Styles/Footer.scss";
 import logo from '../assets/images/logo.png';
 import payment from '../assets/images/payment.png';
-import "../styles/Footer.scss";
 
 const Footer = () => {
     return (
