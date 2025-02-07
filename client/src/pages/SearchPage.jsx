@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import "../Styles/TripList.scss";
 import ListingCard from "../components/ListingCard";
 import Loader from "../components/Loader";
 import { setListing } from "../redux/userSlice";
-import "../styles/TripList.scss";
 
 const SearchPage = () => {
     const [loading, setLoading] = useState(true)
