@@ -6,8 +6,8 @@ import {
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import "../Styles/listingCard.scss";
 import { setWishList } from "../redux/userSlice";
-import "../styles/ListingCard.scss";
 
 const ListingCard = ({
     listingId,
