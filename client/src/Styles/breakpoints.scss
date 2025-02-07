@@ -1,0 +1,68 @@
+$breakpoints: (
+    "sm": 480px,
+    "mm": 580px,
+    "md": 720px,
+    "ml": 820px,
+    "lg": 1000px,
+    "xl": 1120px
+);
+
+@mixin sm { 
+    @media (max-width: map-get($breakpoints, "sm")) {
+        @content;
+    }
+};
+
+@mixin mm {
+    @media (max-width: map-get($breakpoints, "mm")) {
+        @content;
+    }
+};
+
+@mixin md {
+    @media (max-width: map-get($breakpoints, "md")) {
+        @content;
+    }
+};
+
+@mixin ml {
+    @media (max-width: map-get($breakpoints, "ml")) {
+        @content;
+    }
+};
+
+@mixin lg {
+    @media (max-width: map-get($breakpoints, "lg")) {
+        @content;
+    }
+};
+
+@mixin xl {
+    @media (max-width: map-get($breakpoints, "xl")) {
+        @content;
+    }
+};
+
+.container {
+    width: 100%; /* Default: Full width */
+    max-width: 1400px; /* Maximum width for larger screens */
+    margin: 0 auto; /* Center the container */
+    padding: 10px 15px; /* Default horizontal padding */
+
+    @media (max-width: 1200px) {
+        max-width: 1140px;
+    }
+
+    @media (max-width: 992px) {
+        max-width: 960px;
+    }
+
+    @media (max-width: 768px) {
+        max-width: 720px;
+    }
+
+    @media (max-width: 576px) {
+        max-width: 100%; /* Small devices use full width */
+        padding: 0 10px; /* Reduce padding for small screens */
+    }
+}
