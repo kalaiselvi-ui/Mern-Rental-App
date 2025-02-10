@@ -28,10 +28,10 @@ function App() {
             <Route path='/properties/:listingId' element={<ListingDetails />} />
             <Route path='/properties/category/:category' element={<CategoryPage />} />
             <Route path='/properties/search/:search' element={<SearchPage />} />
-            <Route path='/:userId/trips' element={<TripList />} />
-            <Route path='/:userId/wishList' element={<WishList />} />
-            <Route path='/:userId/propertyList' element={<PropertyList />} />
-            <Route path='/:userId/reservationList' element={<ReservationList />} />
+            <Route path='/users/:userId/trips' element={<TripList />} />
+            <Route path='/users/:userId/wishList' element={<WishList />} />
+            <Route path='/users/:userId/propertyList' element={<PropertyList />} />
+            <Route path='/users/:userId/reservationList' element={<ReservationList />} />
           </Routes>
           <Footer />
         </BrowserRouter>

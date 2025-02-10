@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import '../Styles/TripList.scss'
 import ListingCard from '../components/ListingCard'
 import Loader from '../components/Loader'
+import { BASE_URL } from '../config'
 import { setPropertyList } from '../redux/userSlice'
 
 const PropertyList = () => {
@@ -16,7 +17,7 @@ const PropertyList = () => {
 
     const getPropertyList = async () => {
         try {
-            const response = await fetch(`http://localhost:3001/users/${user._id}/properties`, {
+            const response = await fetch(`${BASE_URL}/users/${user._id}/properties`, {
                 method: 'GET'
             })
             const data = await response.json()

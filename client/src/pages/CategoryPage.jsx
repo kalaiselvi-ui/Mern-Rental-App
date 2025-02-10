@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import '../Styles/TripList.scss';
 import ListingCard from '../components/ListingCard';
 import Loader from '../components/Loader';
+import { BASE_URL } from '../config';
 import { setListing } from '../redux/userSlice';
 
 const CategoryPage = () => {
@@ -15,7 +16,7 @@ const CategoryPage = () => {
 
     const getFeedListings = async () => {
         try {
-            const response = await fetch(`http://localhost:3001/properties?category=${category}`, {
+            const response = await fetch(`${BASE_URL}/properties?category=${category}`, {
                 method: 'GET'
             });
             const data = await response.json();

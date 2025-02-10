@@ -7,6 +7,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import '../Styles/listingDetails.scss';
 import Heading from '../components/Heading';
 import Loader from '../components/Loader';
+import { BASE_URL } from '../config';
 import { facilities } from '../data';
 
 const ListingDetails = () => {
@@ -19,7 +20,7 @@ const ListingDetails = () => {
 
     const getListingDetails = async () => {
         try {
-            const response = await fetch(`http://localhost:3001/properties/${listingId}`, {
+            const response = await fetch(`${BASE_URL}/properties/${listingId}`, {
                 method: 'GET'
             })
             const data = await response.json();
@@ -62,7 +63,7 @@ const ListingDetails = () => {
                 endDate: dateRange[0].endDate.toISOString(),
                 totalPrice: listing.price * dayCount
             }
-            const response = await fetch('http://localhost:3001/bookings/create', {
+            const response = await fetch(`${BASE_URL}/bookings/create`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -70,7 +71,7 @@ const ListingDetails = () => {
                 body: JSON.stringify(bookingForm)
             })
             if (response.ok) {
-                navigate(`/${customerId}/trips`)
+                navigate(`/users/${customerId}/trips`)
             }
         }
         catch (err) {
@@ -88,7 +89,7 @@ const ListingDetails = () => {
                 {listing && listing.listingPhotoPaths && (
                     <div className='photos'>
                         {listing.listingPhotoPaths.map((photo) => (
-                            <img src={`http://localhost:3001/${photo.replace('public', '')}`} alt='' />
+                            <img src={`${BASE_URL}/${photo.replace('public', '')}`} alt='' />
                         ))}
                     </div>
                 )}
@@ -98,7 +99,7 @@ const ListingDetails = () => {
                 </div>
                 <hr />
                 <div className='profile'>
-                    <img src={`http://localhost:3001/${listing.creator.profileImagePath.replace('public', '')}`} alt="" />
+                    <img src={`${BASE_URL}/${listing.creator.profileImagePath.replace('public', '')}`} alt="" />
                     <h3>Hosted by {listing.creator.firstName}{listing.creator.lastName}</h3>
 
                 </div>

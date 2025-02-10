@@ -7,6 +7,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import "../Styles/listingCard.scss";
+import { BASE_URL } from '../config';
 import { setWishList } from "../redux/userSlice";
 
 const ListingCard = ({
@@ -52,11 +53,11 @@ const ListingCard = ({
             return;
         }
 
-        console.log("📌 Sending request to:", `http://localhost:3001/users/${user._id}/${listingId}`);
+        console.log("📌 Sending request to:", `${BASE_URL}/users/${user._id}/${listingId}`);
 
         try {
             const response = await fetch(
-                `http://localhost:3001/users/${user._id}/${listingId}`,
+                `${BASE_URL}/users/${user._id}/${listingId}`,
                 {
                     method: "PATCH",
                     headers: { "Content-Type": "application/json" },
@@ -90,7 +91,7 @@ const ListingCard = ({
                     {listingPhotoPaths?.map((photo, index) => (
                         <div key={index} className="slide">
                             <img
-                                src={`http://localhost:3001/${photo?.replace("public", "")}`}
+                                src={`${BASE_URL}/${photo?.replace("public", "")}`}
                                 alt={`photo ${index + 1}`}
                             />
                             <div className="prev-button" onClick={(e) => { e.stopPropagation(); setCurrentIndex((prevIndex) => (prevIndex - 1 + listingPhotoPaths.length) % listingPhotoPaths.length); }}>

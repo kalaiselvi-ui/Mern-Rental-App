@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import '../Styles/TripList.scss'
 import ListingCard from '../components/ListingCard'
 import Loader from '../components/Loader'
+import { BASE_URL } from '../config'
 import { setTripList } from '../redux/userSlice'
 
 const TripList = () => {
@@ -12,7 +13,7 @@ const TripList = () => {
     const dispatch = useDispatch();
     const getTripList = async () => {
         try {
-            const response = await fetch(`http://localhost:3001/users/${userId}/trips`, {
+            const response = await fetch(`${BASE_URL}/users/${userId}/trips`, {
                 method: 'GET',
             })
             const data = await response.json();

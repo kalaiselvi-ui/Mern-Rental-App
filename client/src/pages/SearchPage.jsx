@@ -4,8 +4,8 @@ import { useParams } from "react-router-dom";
 import "../Styles/TripList.scss";
 import ListingCard from "../components/ListingCard";
 import Loader from "../components/Loader";
+import { BASE_URL } from '../config';
 import { setListing } from "../redux/userSlice";
-
 const SearchPage = () => {
     const [loading, setLoading] = useState(true)
     const { search } = useParams()
@@ -14,7 +14,7 @@ const SearchPage = () => {
 
     const getSearchListings = async () => {
         try {
-            const response = await fetch(`http://localhost:3001/properties/search/${search}`, {
+            const response = await fetch(`${BASE_URL}/properties/search/${search}`, {
                 method: "GET"
             })
 

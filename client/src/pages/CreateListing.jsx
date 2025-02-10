@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import '../Styles/createListing.scss';
 import Heading from '../components/Heading';
+import { BASE_URL } from '../config';
 import { categories, facilities, types } from '../data';
 
 const CreateListing = () => {
@@ -115,7 +116,7 @@ const CreateListing = () => {
                 listingForm.append('listingPhotos', photo)
             })
 
-            const response = await fetch('http://localhost:3001/properties/create', {
+            const response = await fetch(`${BASE_URL}/properties/create`, {
                 method: 'POST',
                 body: listingForm
             })

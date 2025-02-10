@@ -34,9 +34,12 @@ router.post("/register", upload.single("profileImage"), async (req, res) => {
 
     /* check if user exists */
     const existingUser = await User.findOne({ email });
+    console.log("user already exists", existingUser);
+
     if (existingUser) {
       return res.status(409).json({ message: "User Already Exists" });
     }
+
     /*Hash password */
     const salt = await bcrypt.genSalt();
     const hashPassword = await bcrypt.hash(password, salt);

@@ -12,7 +12,10 @@ export const userSlice = createSlice({
     reducers: {
         setLogin: (state, action) => {
             state.user = action.payload.user
+            console.log(action.payload, 'action.payload')
+            console.log(action.payload, 'action.payload.user')
             state.token = action.payload.token
+            console.log(action.payload.token, 'action.payload.token')
         },
         setLogout: (state) => {
             state.user = null

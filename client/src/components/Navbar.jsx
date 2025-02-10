@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import '../Styles/navbar.scss'
 import logo from '../assets/images/logo.png'
+import { BASE_URL } from '../config'
 import { setLogout } from '../redux/userSlice'
 
 const Navbar = () => {
@@ -45,7 +46,7 @@ const Navbar = () => {
                                 <Person sx={{ color: 'var(darkgrey)' }} />
                                 :
                                 (
-                                    <img src={`http://localhost:3001/${user.profileImagePath.replace("public", '')}`} style={{ objectFit: 'cover', borderRadius: '100%' }} alt='' />
+                                    <img src={`${BASE_URL}/${user.profileImagePath.replace("public", '')}`} style={{ objectFit: 'cover', borderRadius: '100%' }} alt='' />
                                 )
 
                         }
@@ -62,10 +63,10 @@ const Navbar = () => {
                     {
                         dropdownMenu && user && (
                             <div className='navbar_right_accountmenu'>
-                                <Link to={`/${user._id}/trips`}>Trip List </Link>
-                                <Link to={`/${user._id}/wishList`}>Wish List</Link>
-                                <Link to={`/${user._id}/propertyList`}>Property List</Link>
-                                <Link to={`/${user._id}/reservationList`}>Reservation List</Link>
+                                <Link to={`/users/${user._id}/trips`}>Trip List </Link>
+                                <Link to={`/users/${user._id}/wishList`}>Wish List</Link>
+                                <Link to={`/users/${user._id}/propertyList`}>Property List</Link>
+                                <Link to={`/users/${user._id}/reservationList`}>Reservation List</Link>
                                 <Link to="/create-listing">Become a Host</Link>
 
                                 <Link to='/' onClick={() => Dispatch(setLogout())}>Log Out</Link>

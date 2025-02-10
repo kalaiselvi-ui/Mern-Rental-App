@@ -9,7 +9,13 @@ const listingRoutes = require("./routes/listing");
 const bookingRoutes = require("./routes/booking");
 const userRoutes = require("./routes/user");
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://client-rental-app.vercel.app",
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    credentials: true,
+  })
+);
 app.use(express.json());
 app.use(express.static("public"));
 // app.use("/uploads", express.static("public/uploads"));

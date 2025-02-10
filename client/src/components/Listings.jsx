@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import '../Styles/listing.scss'
+import { BASE_URL } from '../config'
 import { categories } from '../data'
 import { setListing } from '../redux/userSlice'
 import ListingCard from './ListingCard'
@@ -15,10 +16,11 @@ const Listings = () => {
     const [selectedCategory, setSelectedCategory] = useState("All");
 
     const listings = useSelector((state) => state.listings)
+    console.log('listings', listings)
 
     const getFeedListings = async () => {
         try {
-            const response = await fetch(selectedCategory !== 'All' ? `http://localhost:3001/properties?category=${selectedCategory}` : "http://localhost:3001/properties", {
+            const response = await fetch(selectedCategory !== 'All' ? `${BASE_URL}/properties?category=${selectedCategory}` : "${BASE_URL}/properties", {
                 method: 'GET'
             });
             const data = await response.json();
