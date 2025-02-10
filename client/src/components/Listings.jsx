@@ -20,7 +20,7 @@ const Listings = () => {
 
     const getFeedListings = async () => {
         try {
-            const response = await fetch(selectedCategory !== 'All' ? `${BASE_URL}/properties?category=${selectedCategory}` : "${BASE_URL}/properties", {
+            const response = await fetch(selectedCategory !== 'All' ? `${BASE_URL}/properties?category=${selectedCategory}` : `${BASE_URL}/properties`, {
                 method: 'GET'
             });
             const data = await response.json();
