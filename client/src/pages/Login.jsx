@@ -22,6 +22,7 @@ const Login = () => {
     }, [user, token, navigate])
 
     const handleSubmit = async (e) => {
+        console.log("BASE_URL:", BASE_URL);
         e.preventDefault();
         try {
             const response = await fetch(`${BASE_URL}/auth/login`, {
@@ -29,6 +30,7 @@ const Login = () => {
                 headers: {
                     'Content-Type': 'application/json'
                 },
+                credentials: "include",
                 body: JSON.stringify({ email, password })
             })
 

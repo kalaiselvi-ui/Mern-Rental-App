@@ -19,6 +19,11 @@ const Listings = () => {
     console.log('listings', listings)
 
     const getFeedListings = async () => {
+        const url = selectedCategory !== 'All'
+            ? `${BASE_URL}/properties?category=${encodeURIComponent(selectedCategory)}`
+            : `${BASE_URL}/properties`;
+
+        console.log("Fetching URL:", url);
         try {
             const response = await fetch(selectedCategory !== 'All' ? `${BASE_URL}/properties?category=${selectedCategory}` : `${BASE_URL}/properties`, {
                 method: 'GET'

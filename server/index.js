@@ -9,25 +9,52 @@ const listingRoutes = require("./routes/listing");
 const bookingRoutes = require("./routes/booking");
 const userRoutes = require("./routes/user");
 
-app.use(
-  cors({
-    origin: "https://client-rental-app.vercel.app",
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    credentials: true,
-  })
-);
-app.use(express.json());
-app.use(express.static("public"));
-// app.use("/uploads", express.static("public/uploads"));
-// const path = require("path");
-// app.use("/uploads", express.static(path.join(__dirname, "public/uploads")));
+// CORS Setup
+const corsOptions = {
+  origin: (origin, callback) => {
+    // Allow both the client app on Vercel and localhost for testing
+    if (
+      origin === "https://client-rental-app.vercel.app" ||
+      origin === "http://localhost:5173"
+    ) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  credentials: true, // Allow cookies and authentication headers
+  allowedHeaders: ["Content-Type", "Authorization"],
+  optionsSuccessStatus: 200, // To handle preflight 204 issue
+};
+
+app.use(cors(corsOptions)); // Apply CORS globally
+
+// Preflight request handling
+app.use((req, res, next) => {
+  if (req.method === "OPTIONS") {
+    res.header("Access-Control-Allow-Origin", req.headers.origin); // Allow origin dynamically
+    res.header("Access-Control-Allow-Credentials", "true");
+    res.header(
+      "Access-Control-Allow-Methods",
+      "GET,HEAD,PUT,PATCH,POST,DELETE"
+    );
+    res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+    return res.sendStatus(200); // Successful preflight response
+  }
+  next();
+});
+
+// Body Parsing
+app.use(express.json()); // Enable parsing of JSON requests
+
+// Routes
 app.use("/auth", authRoutes);
 app.use("/properties", listingRoutes);
 app.use("/bookings", bookingRoutes);
 app.use("/users", userRoutes);
 
-//MONGOOSE SETUP
-const PORT = 3001;
+// Mongoose setup and server start
 mongoose
   .connect(process.env.MONGO_URL, {
     dbName: "rental_app",
@@ -35,6 +62,6 @@ mongoose
     useUnifiedTopology: true,
   })
   .then(() => {
-    app.listen(PORT, () => console.log(`server port: ${PORT}`));
+    app.listen(3001, () => console.log("Server is running on port 3001"));
   })
-  .catch((err) => console.log(`${err} did not connect`));
+  .catch((err) => console.log(`Error: ${err}`));
