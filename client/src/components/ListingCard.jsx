@@ -91,7 +91,7 @@ const ListingCard = ({
                     {listingPhotoPaths?.map((photo, index) => (
                         <div key={index} className="slide">
                             <img
-                                src={`${BASE_URL}/${photo?.replace("public", "")}`}
+                                src={`${BASE_URL}${photo?.replace("public", "").startsWith("/") ? photo?.replace("public", "") : `/${photo?.replace("public", "")}`}`}
                                 alt={`photo ${index + 1}`}
                             />
                             <div className="prev-button" onClick={(e) => { e.stopPropagation(); setCurrentIndex((prevIndex) => (prevIndex - 1 + listingPhotoPaths.length) % listingPhotoPaths.length); }}>

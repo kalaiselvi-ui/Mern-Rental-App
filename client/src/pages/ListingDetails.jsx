@@ -89,7 +89,7 @@ const ListingDetails = () => {
                 {listing && listing.listingPhotoPaths && (
                     <div className='photos'>
                         {listing.listingPhotoPaths.map((photo) => (
-                            <img src={`${BASE_URL}/${photo.replace('public', '')}`} alt='' />
+                            <img src={`${BASE_URL}${photo.replace('public', '').startsWith("/") ? photo?.replace("public", "") : `/${photo?.replace("public", "")}`}`} alt='' />
                         ))}
                     </div>
                 )}
@@ -99,7 +99,7 @@ const ListingDetails = () => {
                 </div>
                 <hr />
                 <div className='profile'>
-                    <img src={`${BASE_URL}/${listing.creator.profileImagePath.replace('public', '')}`} alt="" />
+                    <img src={`${BASE_URL}${listing.creator.profileImagePath.replace('public', '').startsWith('/') ? listing.creator.profileImagePath.replace('public', '') : `${listing.creator.profileImagePath.replace('public', '')}`}`} alt="" />
                     <h3>Hosted by {listing.creator.firstName}{listing.creator.lastName}</h3>
 
                 </div>

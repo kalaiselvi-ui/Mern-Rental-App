@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv").config();
 const cors = require("cors");
 
+app.use("/uploads", express.static("public/uploads"));
 const authRoutes = require("./routes/auth");
 const listingRoutes = require("./routes/listing");
 const bookingRoutes = require("./routes/booking");
